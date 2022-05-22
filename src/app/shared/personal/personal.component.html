@@ -1,0 +1,31 @@
+<div [formGroup]="form">
+   <p class="display-6">Personal Information</p>
+   <div class="row">
+      <div class="col">
+         <app-required-field formControlName="first" placeholder="First name" (blur)="onTouched()">
+         </app-required-field>
+      </div>
+      <div class="col">
+         <app-required-field formControlName="last" placeholder="Last name" (blur)="onTouched()">
+         </app-required-field>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col" [ngClass]="{ 'was-validated': form?.value?.gender }">
+         <select formControlName="gender" class="form-select mb-3" (blur)="onTouched()">
+            <option selected disabled value="">Select gender...</option>
+            <option *ngFor="let option of genderOptions" [value]="option">
+               {{ option }}
+            </option>
+         </select>
+      </div>
+   </div>
+   <ng-container *ngIf="form?.value?.gender === 'Other'">
+      <div class="row">
+         <div class="col">
+            <app-required-field formControlName="genderOther" placeholder="Specify" (blur)="onTouched()">
+            </app-required-field>
+         </div>
+      </div>
+   </ng-container>
+</div>
