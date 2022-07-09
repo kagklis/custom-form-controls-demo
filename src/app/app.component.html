@@ -1,15 +1,30 @@
-<form [formGroup]="form" (submit)="onSubmit()" class="container needs-validation" novalidate>
-   <h3 class="display-4">
-      <b>Welcome {{ form.value.nickname ?? "" }}</b>
-   </h3>
-   <app-required-field
-      formControlName="nickname"
-      placeholder="Nickname"
-   ></app-required-field>
-   <app-personal formControlName="personal"></app-personal>
-   <div class="col-12">
-      <button type="submit" [disabled]="!form.valid" class="btn btn-primary">
-         Submit
-      </button>
-   </div>
+<form
+  #form="ngForm"
+  (submit)="onSubmit()"
+  class="container needs-validation"
+  novalidate
+>
+  <h3 class="display-4">
+    <b>Welcome {{ form.value.nickname ?? '' }}</b>
+  </h3>
+  <app-required-field
+    name="nickname"
+    ngModel
+    placeholder="Nickname"
+  ></app-required-field>
+  <app-personal name="personal" ngModel></app-personal>
+  <div class="col-12">
+    <button type="submit" [disabled]="!form.valid" class="btn btn-primary">
+      Submit
+    </button>
+  </div>
+  <div class="mt-4">
+    <b>Form Status:</b>
+    {{ form.status }}
+    {{ form.touched ? 'touched' : 'untouched' }}
+    {{ form.dirty ? 'dirty' : 'pristine' }}
+    <br />
+    <b>Personal: </b>
+    {{ form?.value | json }}
+  </div>
 </form>

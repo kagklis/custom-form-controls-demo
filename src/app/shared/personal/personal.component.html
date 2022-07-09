@@ -12,7 +12,7 @@
    </div>
    <div class="row">
       <div class="col" [ngClass]="{ 'was-validated': form?.value?.gender }">
-         <select formControlName="gender" class="form-select mb-3" (blur)="onTouched()">
+         <select formControlName="gender" class="form-select mb-3" (change)="onGenderChange()" (blur)="onTouched()">
             <option selected disabled value="">Select gender...</option>
             <option *ngFor="let option of genderOptions" [value]="option">
                {{ option }}
